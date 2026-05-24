@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --font-plus-jakarta: "Plus Jakarta Sans";
+  --font-space-grotesk: "Space Grotesk";
+  --background: #f4f7fb;
+  --foreground: #112031;
+  --muted: #5f7185;
+  --card: rgba(255, 255, 255, 0.88);
+  --border: rgba(148, 163, 184, 0.18);
+  --accent: #0f766e;
+  --accent-strong: #115e59;
+  --accent-soft: rgba(15, 118, 110, 0.12);
+  --danger: #ef4444;
+  --shadow: 0 24px 60px rgba(15, 23, 42, 0.08);
+}
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-plus-jakarta);
+  --font-mono: var(--font-space-grotesk);
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-plus-jakarta), sans-serif;
+  min-height: 100vh;
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(16, 185, 129, 0.1), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(14, 165, 233, 0.14), transparent 34%),
+    linear-gradient(180deg, #f7fbff 0%, #eef4fa 44%, #f7fafc 100%);
+}
+
+.dark {
+  --background: #07111b;
+  --foreground: #ecf7ff;
+  --muted: #8fa4b8;
+  --card: rgba(10, 22, 34, 0.82);
+  --border: rgba(148, 163, 184, 0.14);
+  --accent: #34d399;
+  --accent-strong: #10b981;
+  --accent-soft: rgba(52, 211, 153, 0.12);
+  --danger: #f87171;
+  --shadow: 0 28px 64px rgba(2, 6, 23, 0.45);
+  background-image:
+    radial-gradient(circle at 0% 0%, rgba(52, 211, 153, 0.1), transparent 28%),
+    radial-gradient(circle at 100% 0%, rgba(56, 189, 248, 0.1), transparent 34%),
+    linear-gradient(180deg, #07111b 0%, #081827 44%, #06111a 100%);
+}
+
+* {
+  border-color: var(--border);
+}
+
+::selection {
+  background: rgba(45, 212, 191, 0.25);
+}
+
+.surface-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  box-shadow: var(--shadow);
+  backdrop-filter: blur(18px);
+}
+
+.section-title {
+  font-family: var(--font-space-grotesk), sans-serif;
+  letter-spacing: -0.04em;
+}
+
+.field-shell {
+  @apply rounded-2xl border px-4 py-3 text-sm outline-none transition;
+  background: rgba(255, 255, 255, 0.65);
+}
+
+.dark .field-shell {
+  background: rgba(7, 17, 27, 0.48);
+}
+
+.field-shell:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 4px var(--accent-soft);
+}
+
+.grid-fade {
+  position: relative;
+}
+
+.grid-fade::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 36px 36px;
+  mask-image: radial-gradient(circle at center, black 35%, transparent 80%);
+  pointer-events: none;
+}
