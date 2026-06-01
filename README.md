@@ -1,30 +1,35 @@
 # Expense Tracker Pro Frontend
 
-Professional Next.js dashboard for Expense Tracker Pro with authentication, analytics, budgets, filters, CSV export, dark mode, and responsive UX.
+Polished Next.js frontend for Expense Tracker Pro, a modern personal finance dashboard with responsive UX, analytics, budget tracking, transaction management, and secure authentication.
 
-## Stack
+## Project Overview
+
+This frontend powers the user-facing experience for Expense Tracker Pro. It focuses on clean fintech-style UI, clear financial summaries, smooth navigation, responsive layouts, and production-ready integration with the NestJS backend API.
+
+## Features
+
+- Secure login and registration flows
+- Protected dashboard experience
+- Improved fintech-style dashboard layout
+- Transaction create, edit, delete, search, filter, pagination, and CSV export
+- Category analytics and monthly trend charts
+- Budget tracking with progress indicators
+- Profile and settings management
+- Dark and light mode toggle
+- Loading skeletons, empty states, and toast notifications
+- Responsive design for mobile, tablet, and desktop
+
+## Tech Stack
 
 - Next.js 15
 - TypeScript
 - Tailwind CSS 4
 - Framer Motion
 - Recharts
-- React Query
-- React Hook Form + Zod
+- TanStack React Query
+- React Hook Form
+- Zod
 - Sonner
-
-## Features
-
-- Register and login flows
-- Protected dashboard experience
-- Income, expense, balance, and budget overview
-- Transaction create, edit, delete, search, filter, pagination, and CSV export
-- Expense breakdown pie chart
-- Monthly income vs expense trend chart
-- Budget progress tracking
-- Profile/settings management
-- Dark and light mode toggle
-- Empty states, skeleton loading, and toasts
 
 ## Environment Variables
 
@@ -43,38 +48,49 @@ npm run build
 npm run dev
 ```
 
-The app runs on [http://localhost:3000](http://localhost:3000).
+Frontend runs on [http://localhost:3000](http://localhost:3000).
 
-## Test Credentials
+## Backend Dependency
+
+This frontend expects the backend API to be available at:
+
+- Local API: `http://localhost:4000/api`
+- Local Swagger: `http://localhost:4000/docs`
+
+## Deployment Links
+
+- Live frontend: [expense-tracker-frontend-weld-nu.vercel.app](https://expense-tracker-frontend-weld-nu.vercel.app)
+- Live backend API: [expense-tracker-backend-ra9z.onrender.com](https://expense-tracker-backend-ra9z.onrender.com)
+- Swagger docs: [expense-tracker-backend-ra9z.onrender.com/docs](https://expense-tracker-backend-ra9z.onrender.com/docs)
+
+## Demo Credentials
 
 - Email: `demo@expensetracker.pro`
 - Password: `Passw0rd!2026`
 
-## Backend Dependency
+## Deployment Notes
 
-This frontend expects the NestJS API to be available at:
+To deploy on Vercel:
 
-- Local: `http://localhost:4000/api`
-- Swagger: `http://localhost:4000/docs`
-
-## Deployment to Vercel
-
-1. Import the `expense-tracker-frontend` repository into Vercel.
+1. Import the repository into Vercel.
 2. Set the root directory to the frontend project.
-3. Add environment variable:
-   - `NEXT_PUBLIC_API_URL=https://<your-render-service>/api`
-4. Deploy.
+3. Add `NEXT_PUBLIC_API_URL` pointing to the deployed backend API.
+4. Trigger a production deployment.
 
-## Screenshots
+## Screenshots Section
+
+Recommended screenshots for README or portfolio use:
 
 - Login page
+- Register page
 - Dashboard overview
-- Transactions management
+- Transactions page
 - Analytics page
 - Budgets page
 - Settings page
 
-## Notes
+## Quality Checks
 
-- The frontend is fully static-output friendly for the authenticated shell.
-- Lint and production build both pass locally.
+- `npm run lint`
+- `npm run build`
+

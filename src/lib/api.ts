@@ -50,6 +50,16 @@ async function parseResponse<T>(response: Response) {
           ? payload.error
           : payload &&
               typeof payload === "object" &&
+              "message" in payload &&
+              Array.isArray(payload.message)
+            ? payload.message.join(", ")
+            : payload &&
+                typeof payload === "object" &&
+                "message" in payload &&
+                typeof payload.message === "string"
+              ? payload.message
+          : payload &&
+              typeof payload === "object" &&
               "error" in payload &&
               payload.error &&
               typeof payload.error === "object" &&
@@ -67,19 +77,27 @@ export async function apiFetch<T>(
   init?: RequestInit,
   options?: { authenticated?: boolean },
 ) {
-  const token = getStoredToken();
-  const response = await fetch(`${API_URL}${path}`, {
-    ...init,
-    headers: {
-      "Content-Type": "application/json",
-      ...(options?.authenticated !== false && token
-        ? { Authorization: `Bearer ${token}` }
-        : {}),
-      ...init?.headers,
-    },
-  });
+  try {
+    const token = getStoredToken();
+    const response = await fetch(`${API_URL}${path}`, {
+      ...init,
+      headers: {
+        "Content-Type": "application/json",
+        ...(options?.authenticated !== false && token
+          ? { Authorization: `Bearer ${token}` }
+          : {}),
+        ...init?.headers,
+      },
+    });
 
-  return parseResponse<T>(response);
+    return parseResponse<T>(response);
+  } catch (error) {
+    if (error instanceof ApiError) {
+      throw error;
+    }
+
+    throw new ApiError("Unable to reach the server. Please try again.");
+  }
 }
 
 export async function apiDownload(path: string) {
